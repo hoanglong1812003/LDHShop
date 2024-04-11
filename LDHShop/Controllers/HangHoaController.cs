@@ -4,7 +4,7 @@ namespace LDHShop.Controllers
 {
     public class HangHoaController : Controller
     {
-        public IActionResult Index()
+        public IActionResult Index(int? loai)
         {
             return View();
         }
