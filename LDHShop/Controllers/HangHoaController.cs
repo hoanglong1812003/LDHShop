@@ -1,6 +1,7 @@
 ﻿using LDHShop.Data;
 using LDHShop.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace LDHShop.Controllers
 {
@@ -50,6 +51,31 @@ namespace LDHShop.Controllers
                 TenLoai = p.MaLoaiNavigation.TenLoai
             });
             return View(result);
+        }
+        public IActionResult Detail(int id)
+        {
+            var data = db.HangHoas
+                .Include(p => p.MaLoaiNavigation)
+                .SingleOrDefault(p => p.MaHh == id);
+            if (data == null)
+            {
+                TempData["Message"] = $"Không thấy sản phẩm có mã {id}";
+                return Redirect("/404");
+
+            }
+            var result = new ChiTietHangHoaVM
+            {
+                MaHH = data.MaHh,
+                TenHH = data.TenHh,
+                DonGia = data.DonGia ?? 0,
+                ChiTiet = data.MoTa ??  string.Empty,
+                Hinh = data.Hinh ?? string.Empty,
+                MoTa = data.MoTaDonVi ?? string.Empty,
+                TenLoai = data.MaLoaiNavigation.TenLoai,
+                SoLuongTon = 10,// sau
+                DiemDanhGia = 5,//sau
+            };
+            return View(data);
         }
     }
 }
