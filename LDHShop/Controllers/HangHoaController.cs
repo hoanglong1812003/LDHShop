@@ -1,5 +1,7 @@
 ﻿using LDHShop.Data;
 using LDHShop.ViewModels;
+using LDHShop.Data;
+using LDHShop.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,19 +11,21 @@ namespace LDHShop.Controllers
     {
         private readonly LdhshopContext db;
 
-        public HangHoaController(LdhshopContext context) {
-            db = context;
+        public HangHoaController(LdhshopContext conetxt)
+        {
+            db = conetxt;
         }
+
         public IActionResult Index(int? loai)
         {
-            var hanghoas = db.HangHoas.AsQueryable();
+            var hangHoas = db.HangHoas.AsQueryable();
 
-            if(loai.HasValue)
+            if (loai.HasValue)
             {
-                hanghoas = hanghoas.Where(p => p.MaLoai == loai.Value);
+                hangHoas = hangHoas.Where(p => p.MaLoai == loai.Value);
             }
 
-            var result = hanghoas.Select(p => new HangHoaVM
+            var result = hangHoas.Select(p => new HangHoaVM
             {
                 MaHH = p.MaHh,
                 TenHH = p.TenHh,
@@ -32,16 +36,17 @@ namespace LDHShop.Controllers
             });
             return View(result);
         }
-        public IActionResult Search(string query)
+
+        public IActionResult Search(string? query)
         {
-            var hanghoas = db.HangHoas.AsQueryable();
+            var hangHoas = db.HangHoas.AsQueryable();
 
             if (query != null)
             {
-                hanghoas = hanghoas.Where(p => p.TenHh.Contains(query));
+                hangHoas = hangHoas.Where(p => p.TenHh.Contains(query));
             }
 
-            var result = hanghoas.Select(p => new HangHoaVM
+            var result = hangHoas.Select(p => new HangHoaVM
             {
                 MaHH = p.MaHh,
                 TenHH = p.TenHh,
@@ -52,6 +57,8 @@ namespace LDHShop.Controllers
             });
             return View(result);
         }
+
+
         public IActionResult Detail(int id)
         {
             var data = db.HangHoas
@@ -61,21 +68,21 @@ namespace LDHShop.Controllers
             {
                 TempData["Message"] = $"Không thấy sản phẩm có mã {id}";
                 return Redirect("/404");
-
             }
+
             var result = new ChiTietHangHoaVM
             {
                 MaHH = data.MaHh,
                 TenHH = data.TenHh,
                 DonGia = data.DonGia ?? 0,
-                ChiTiet = data.MoTa ??  string.Empty,
+                ChiTiet = data.MoTa ?? string.Empty,
                 Hinh = data.Hinh ?? string.Empty,
                 MoTa = data.MoTaDonVi ?? string.Empty,
                 TenLoai = data.MaLoaiNavigation.TenLoai,
-                SoLuongTon = 10,// sau
-                DiemDanhGia = 5,//sau
+                SoLuongTon = 10,//tính sau
+                DiemDanhGia = 5,//check sau
             };
-            return View(data);
+            return View(result);
         }
     }
 }

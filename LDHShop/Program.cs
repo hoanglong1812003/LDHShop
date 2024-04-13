@@ -1,4 +1,6 @@
 using LDHShop.Data;
+using LDHShop.Helpers;
+using LDHShop.Helpers;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,6 +10,19 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<LdhshopContext>(options => {
     options.UseSqlServer(builder.Configuration.GetConnectionString("LDHShop"));
 });
+
+builder.Services.AddDistributedMemoryCache();
+
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(10);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
+
+// https://docs.automapper.org/en/stable/Dependency-injection.html
+builder.Services.AddAutoMapper(typeof(AutoMapperProfile));
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -22,6 +37,8 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+app.UseSession();
 
 app.UseAuthorization();
 
