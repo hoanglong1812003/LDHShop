@@ -51,9 +51,6 @@ public partial class LdhshopContext : DbContext
 
     public virtual DbSet<YeuThich> YeuThiches { get; set; }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-       => optionsBuilder.UseSqlServer("Data Source=DESKTOP-HF8HOQU\\SQLEXPRESS;Initial Catalog=LDHshop;Integrated Security=True;Trust Server Certificate=True");
-
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<BanBe>(entity =>
