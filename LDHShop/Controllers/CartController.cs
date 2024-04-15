@@ -37,7 +37,7 @@ namespace ECommerceMVC.Controllers
                 {
                     MaHh = hangHoa.MaHh,
                     TenHH = hangHoa.TenHh,
-                    DonGia = hangHoa.DonGia ?? 0,
+                    DonGia = (double)hangHoa.GiaBan,
                     Hinh = hangHoa.Hinh ?? string.Empty,
                     SoLuong = quantity
                 };

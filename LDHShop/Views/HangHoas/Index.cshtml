@@ -16,25 +16,20 @@
                 @Html.DisplayNameFor(model => model.TenHh)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TenAlias)
+                @Html.DisplayNameFor(model => model.DonViTinh)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.MoTaDonVi)
+                @Html.DisplayNameFor(model => model.GiaNhap)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DonGia)
+                @Html.DisplayNameFor(model => model.GiaBan)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Hinh)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NgaySx)
-            </th>
+
             <th>
                 @Html.DisplayNameFor(model => model.GiamGia)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SoLanXem)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.MoTa)
@@ -43,7 +38,7 @@
                 @Html.DisplayNameFor(model => model.MaLoaiNavigation)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.MaNccNavigation)
+                @Html.DisplayNameFor(model => model.MaNcc)
             </th>
             <th></th>
         </tr>
@@ -55,25 +50,19 @@
                 @Html.DisplayFor(modelItem => item.TenHh)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.TenAlias)
+                @Html.DisplayFor(modelItem => item.DonViTinh)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.MoTaDonVi)
+                @Html.DisplayFor(modelItem => item.GiaNhap)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.DonGia)
+                @Html.DisplayFor(modelItem => item.GiaBan)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Hinh)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.NgaySx)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.GiamGia)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SoLanXem)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.MoTa)
@@ -82,7 +71,7 @@
                 @Html.DisplayFor(modelItem => item.MaLoaiNavigation.MaLoai)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.MaNccNavigation.MaNcc)
+                @Html.DisplayFor(modelItem => item.MaNcc)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.MaHh">Edit</a> |

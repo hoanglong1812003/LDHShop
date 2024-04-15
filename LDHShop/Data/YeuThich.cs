@@ -11,8 +11,6 @@ public partial class YeuThich
 
     public string? MaKh { get; set; }
 
-    public DateTime? NgayChon { get; set; }
-
     public string? MoTa { get; set; }
 
     public virtual HangHoa? MaHhNavigation { get; set; }

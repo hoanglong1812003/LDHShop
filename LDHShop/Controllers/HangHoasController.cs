@@ -21,7 +21,7 @@ namespace LDHShop.Controllers
         // GET: HangHoas
         public async Task<IActionResult> Index()
         {
-            var ldhshopContext = _context.HangHoas.Include(h => h.MaLoaiNavigation).Include(h => h.MaNccNavigation);
+            var ldhshopContext = _context.HangHoas.Include(h => h.MaLoaiNavigation).Include(h => h.MaNcc);
             return View(await ldhshopContext.ToListAsync());
         }
 
@@ -35,7 +35,7 @@ namespace LDHShop.Controllers
 
             var hangHoa = await _context.HangHoas
                 .Include(h => h.MaLoaiNavigation)
-                .Include(h => h.MaNccNavigation)
+                .Include(h => h.MaNcc)
                 .FirstOrDefaultAsync(m => m.MaHh == id);
             if (hangHoa == null)
             {
@@ -58,7 +58,7 @@ namespace LDHShop.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("MaHh,TenHh,TenAlias,MaLoai,MoTaDonVi,DonGia,Hinh,NgaySx,GiamGia,SoLanXem,MoTa,MaNcc")] HangHoa hangHoa)
+        public async Task<IActionResult> Create([Bind("MaHh,TenHh,TenAlias,MaLoai,DonViTinh,DonGia,Hinh,NgaySx,GiamGia,SoLanXem,MoTa,MaNcc")] HangHoa hangHoa)
         {
             if (ModelState.IsValid)
             {
@@ -94,7 +94,7 @@ namespace LDHShop.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("MaHh,TenHh,TenAlias,MaLoai,MoTaDonVi,DonGia,Hinh,NgaySx,GiamGia,SoLanXem,MoTa,MaNcc")] HangHoa hangHoa)
+        public async Task<IActionResult> Edit(int id, [Bind("MaHh,TenHh,TenAlias,MaLoai,DonViTinh,DonGia,Hinh,NgaySx,GiamGia,SoLanXem,MoTa,MaNcc")] HangHoa hangHoa)
         {
             if (id != hangHoa.MaHh)
             {
@@ -136,7 +136,7 @@ namespace LDHShop.Controllers
 
             var hangHoa = await _context.HangHoas
                 .Include(h => h.MaLoaiNavigation)
-                .Include(h => h.MaNccNavigation)
+                .Include(h => h.MaNcc)
                 .FirstOrDefaultAsync(m => m.MaHh == id);
             if (hangHoa == null)
             {

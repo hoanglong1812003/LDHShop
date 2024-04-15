@@ -5,37 +5,33 @@ namespace LDHShop.Data;
 
 public partial class HangHoa
 {
-    public int MaHh { get; set; }
+	public string? MoTa { get; set; }
 
-    public string TenHh { get; set; } = null!;
+	public string MaNcc { get; set; } = null!;
 
-    public string? TenAlias { get; set; }
+	public int MaHh { get; set; }
 
-    public int MaLoai { get; set; }
+	public string TenHh { get; set; } = null!;
 
-    public string? MoTaDonVi { get; set; }
+	public int MaLoai { get; set; }
 
-    public double? DonGia { get; set; }
+	public string? DonViTinh { get; set; }
 
-    public string? Hinh { get; set; }
+	public decimal GiaNhap { get; set; }
 
-    public DateTime NgaySx { get; set; }
+	public decimal GiaBan { get; set; }
 
-    public double GiamGia { get; set; }
+	public string? Hinh { get; set; }
 
-    public int SoLanXem { get; set; }
+	public decimal? GiamGia { get; set; }
 
-    public string? MoTa { get; set; }
+	public int SoLuongTon { get; set; }
 
-    public string MaNcc { get; set; } = null!;
+	public virtual ICollection<ChiTietHd> ChiTietHds { get; set; } = new List<ChiTietHd>();
 
-    public virtual ICollection<BanBe> BanBes { get; set; } = new List<BanBe>();
+	public virtual Loai MaLoaiNavigation { get; set; } = null!;
 
-    public virtual ICollection<ChiTietHd> ChiTietHds { get; set; } = new List<ChiTietHd>();
+	public virtual ICollection<NhapHang> NhapHangs { get; set; } = new List<NhapHang>();
 
-    public virtual Loai MaLoaiNavigation { get; set; } = null!;
-
-    public virtual NhaCungCap MaNccNavigation { get; set; } = null!;
-
-    public virtual ICollection<YeuThich> YeuThiches { get; set; } = new List<YeuThich>();
+	public virtual ICollection<YeuThich> YeuThiches { get; set; } = new List<YeuThich>();
 }

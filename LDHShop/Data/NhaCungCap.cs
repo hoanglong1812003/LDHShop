@@ -22,4 +22,6 @@ public partial class NhaCungCap
     public string? MoTa { get; set; }
 
     public virtual ICollection<HangHoa> HangHoas { get; set; } = new List<HangHoa>();
+	public virtual ICollection<PhieuNhapHang> PhieuNhapHangs { get; set; } = new List<PhieuNhapHang>();
+
 }

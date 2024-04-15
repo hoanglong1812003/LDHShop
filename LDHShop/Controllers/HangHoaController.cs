@@ -29,9 +29,9 @@ namespace LDHShop.Controllers
             {
                 MaHH = p.MaHh,
                 TenHH = p.TenHh,
-                DonGia = p.DonGia ?? 0,
+                DonGia = (double) p.GiaBan,
                 Hinh = p.Hinh ?? "",
-                MoTa = p.MoTaDonVi ?? "",
+                MoTa = p.DonViTinh ?? "",
                 TenLoai = p.MaLoaiNavigation.TenLoai
             });
             return View(result);
@@ -50,9 +50,9 @@ namespace LDHShop.Controllers
             {
                 MaHH = p.MaHh,
                 TenHH = p.TenHh,
-                DonGia = p.DonGia ?? 0,
+                DonGia = (double) p.GiaBan,
                 Hinh = p.Hinh ?? "",
-                MoTa = p.MoTaDonVi ?? "",
+                MoTa = p.DonViTinh ?? "",
                 TenLoai = p.MaLoaiNavigation.TenLoai
             });
             return View(result);
@@ -62,7 +62,6 @@ namespace LDHShop.Controllers
         public IActionResult Detail(int id)
         {
             var data = db.HangHoas
-                .Include(p => p.MaLoaiNavigation)
                 .SingleOrDefault(p => p.MaHh == id);
             if (data == null)
             {
@@ -74,10 +73,10 @@ namespace LDHShop.Controllers
             {
                 MaHH = data.MaHh,
                 TenHH = data.TenHh,
-                DonGia = data.DonGia ?? 0,
+                DonGia = (double)data.GiaBan,
                 ChiTiet = data.MoTa ?? string.Empty,
                 Hinh = data.Hinh ?? string.Empty,
-                MoTa = data.MoTaDonVi ?? string.Empty,
+                MoTa = data.DonViTinh ?? string.Empty,
                 TenLoai = data.MaLoaiNavigation.TenLoai,
                 SoLuongTon = 10,//tính sau
                 DiemDanhGia = 5,//check sau
